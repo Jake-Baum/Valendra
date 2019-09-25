@@ -30,13 +30,25 @@ namespace Valendra
             }
         }
 
+        public bool AddGameObject(IGameObject gameObject)
+        {
+            gameObjects.Add(gameObject);
+            return true;
+        }
+
+        public bool RemoveGameObject(IGameObject gameObject)
+        {
+            gameObjects.Remove(gameObject);
+            return true;
+        }
+
         public List<GameObject> GetObjectsAtPosition(Vector2 position)
         {
             List<GameObject> objects = new List<GameObject>();
 
             foreach (GameObject gameObject in gameObjects)
             {
-                if (position.X > gameObject.position.X && position.X < gameObject.position.X + gameObject.size.X && position.Y > gameObject.position.Y && position.Y < gameObject.position.Y + gameObject.size.Y)
+                if (position.X > gameObject.Position.X && position.X < gameObject.Position.X + gameObject.Size.X && position.Y > gameObject.Position.Y && position.Y < gameObject.Position.Y + gameObject.Size.Y)
                 {
                     //position inside object
                     objects.Add(gameObject);

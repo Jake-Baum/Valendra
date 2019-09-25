@@ -12,19 +12,19 @@ namespace Valendra
     interface IGameObject
     {
         //---------------Attributes---------------
-        World world { get; set; }
-        Vector2 position { get; set; }
-        Vector2 speed { get; set; }
-        Vector2 maxSpeed { get; set; }
-        Vector2 size { get; set; }
-        double rotation { get; set; }
-        string textureName { get; set; }
-        IGameObject parent { get; set; }
-        List<IGameObject> children { get; set; }
-        bool isVisible { get; set; }
-        bool isMovable { get; set; }
-        bool isCollidable { get; set; }
-        List<ICollisionBox> collisionBoxes { get; set; }
+        World World { get; set; }
+        Vector2 Position { get; set; }
+        Vector2 Speed { get; set; }
+        Vector2 MaxSpeed { get; set; }
+        Vector2 Size { get; set; }
+        double Rotation { get; set; }
+        string TextureName { get; set; }
+        IGameObject Parent { get; set; }
+        List<IGameObject> Children { get; set; }
+        bool IsVisible { get; set; }
+        bool IsMovable { get; set; }
+        bool IsCollidable { get; set; }
+        List<ICollisionBox> CollisionBoxes { get; set; }
 
         //---------------Methods---------------
         void Update();

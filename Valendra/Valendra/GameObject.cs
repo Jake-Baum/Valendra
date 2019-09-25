@@ -11,23 +11,70 @@ namespace Valendra
 {
     class GameObject : IGameObject
     {
-        public World world { get; set; }
-        public Vector2 position { get; set; }
-        public Vector2 speed { get; set; }
-        public Vector2 maxSpeed { get; set; }
-        public Vector2 size { get; set; }
-        public double rotation { get; set; }
-        public string textureName { get; set; }
-        public IGameObject parent { get; set; }
-        public List<IGameObject> children { get; set; }
-        public bool isVisible { get; set; }
-        public bool isMovable { get; set; }
-        public bool isCollidable { get; set; }
-        public List<ICollisionBox> collisionBoxes { get; set; }
+        public World World { get; set; }
+        public Vector2 Position { get; set; }
+        public Vector2 Speed { get; set; }
+        public Vector2 MaxSpeed { get; set; }
+        public Vector2 Size { get; set; }
+        public double Rotation { get; set; }
+        public string TextureName { get; set; }
+        public IGameObject Parent { get; set; }
+        public List<IGameObject> Children { get; set; }
+        public bool IsVisible { get; set; }
+        public bool IsMovable { get; set; }
+        public bool IsCollidable { get; set; }
+        public List<ICollisionBox> CollisionBoxes { get; set; }
+
+        protected World world;
+        protected Vector2 position;
+        protected Vector2 speed;
+        protected Vector2 maxSpeed;
+        protected Vector2 size;
+        protected double rotation;
+        protected string textureName;
+        protected IGameObject parent;
+        protected List<IGameObject> children;
+        protected bool isVisible;
+        protected bool isMovable;
+        protected bool isCollidable;
+        protected List<ICollisionBox> collisionBoxes;
+
 
         public void Update()
         {
+            //check if speed is greater than max speed.
+            if (speed.X > maxSpeed.X)
+            {
+                speed.X = maxSpeed.X;
+            }
+            else if (speed.X < -maxSpeed.X)
+            {
+                speed.X = -maxSpeed.X;
+            }
+            if (speed.Y > maxSpeed.Y)
+            {
+                speed.Y = maxSpeed.Y;
+            }
+            else if (speed.Y < -maxSpeed.Y)
+            {
+                speed.Y = -maxSpeed.Y;
+            }
 
+            //Handle movement
+            if (isMovable)
+            {
+                Move();
+            }
+
+            //Handle collisions
+            if (isCollidable)
+            {
+                foreach (ICollisionBox collisionBox in collisionBoxes)
+                {
+                    //TODO: Do something with collisions
+                    collisionBox.Collisions();
+                }
+            }
         }
 
         public void Draw()
@@ -37,17 +84,17 @@ namespace Valendra
 
         public void Move()
         {
-
+            position += speed;
         }
 
         public bool AddToWorld()
         {
-            return false;
+            return world.AddGameObject(this);
         }
 
         public void Destroy()
         {
-
+            world.RemoveGameObject(this);
         }
 
         public Vector2 Centre()
