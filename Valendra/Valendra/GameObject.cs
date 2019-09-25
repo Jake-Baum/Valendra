@@ -79,7 +79,11 @@ namespace Valendra
 
         public void Draw()
         {
-
+            if (isVisible)
+            {
+                Vector2 pos = WorldPosition();
+                GraphicsHandler.spriteBatch.Draw(AssetManager.textures[textureName], new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y), Color.White);
+            }
         }
 
         public void Move()

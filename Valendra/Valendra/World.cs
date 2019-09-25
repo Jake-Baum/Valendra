@@ -24,10 +24,15 @@ namespace Valendra
 
         public void Draw()
         {
+            //TODO: add camera transform matrix
+            GraphicsHandler.spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, null);
+
             foreach (IGameObject gameObject in gameObjects)
             {
                 gameObject.Draw();
             }
+
+            GraphicsHandler.spriteBatch.End();
         }
 
         public bool AddGameObject(IGameObject gameObject)
