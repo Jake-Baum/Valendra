@@ -12,6 +12,7 @@ namespace Valendra
     interface IGameObject
     {
         //---------------Attributes---------------
+        World world { get; set; }
         Vector2 position { get; set; }
         Vector2 speed { get; set; }
         Vector2 maxSpeed { get; set; }
